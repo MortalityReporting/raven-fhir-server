@@ -1,0 +1,8 @@
+[submodule "fhir-fhirbase"]
+	path = fhir-fhirbase
+	url = https://github.com/MortalityReporting/fhir-fhirbase.git
+	branch = master
+[submodule "fhir-fhirbase-server"]
+	path = fhir-fhirbase-server
+	url = https://github.com/MortalityReporting/fhir-fhirbase-server.git
+	branch = master
