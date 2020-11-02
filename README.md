@@ -9,7 +9,7 @@ FHIR server component of Raven platform.
 The following direction uses docker installation of fhirbase.
 ```
 sudo docker pull fhirbase/fhirbase:latest
-sudo docker run -d -p 3000:3000 -p 5432:5432 --restart unless-stopped fhirbase/fhirbase:latest
+sudo docker run -d -p 3000:3000 -p 5432:5432 --name fhir_db --restart unless-stopped fhirbase/fhirbase:latest
 ```
 This will deploy the fhirbase postgresql database. Do the follow to get list of docker containers.
 ```
@@ -25,7 +25,8 @@ postgres@xxxxxxxxx:/$ psql
 psql (10.5 (Debian 10.5-1.pgdg90+1))
 Type "help" for help.
 
-postgres=#CREATE <database name>
+postgres=#CREATE DATABASE <dbname>;
+postgres=\l+ (this is to see if your database was created)
 postgres=#\q
 ```
 Now you created a database in the fhirbase postgresql database. Now, at the prompt (of container), run the follow,
@@ -39,9 +40,9 @@ Raven FHIR server can be downloaded from github repo and built as a FHIR server.
 ```
 git clone --recurse https://github.com/MortalityReporting/raven-fhir-server.git
 ```
-After cloning the project, you can go into the raven-fhir-server folder and add envrionment variables in the Dockerfile. See the following example. 
+After cloning the project, you can go into the raven-fhir-server folder and add envrionment variables in the Dockerfile. See the following example. Only AUTH_BEARER or AUTH_BASIC is needed. 
 ```
-ENV JDBC_URL="jdbc:postgresql://<fhirbase url>/<database name>"
+ENV JDBC_URL="jdbc:postgresql://fhir_db:5432/<database name>"
 ENV JDBC_USERNAME="postgres"
 ENV JDBC_PASSWORD="postgres"
 ENV SMART_INTROSPECTURL="<url for raven-fhir-server>/raven-fhir-server/smart/introspect"
@@ -51,11 +52,12 @@ ENV AUTH_BEARER="<static bearer token>"
 ENV AUTH_BASIC="<basic auth - ex) client:secret>"
 ENV FHIR_READONLY="<True of False>"
 ENV SERVERBASE_URL="<raven server's fhir URL - ex) https://myurl.com/raven-fhir-server/fhir>"
+ENV INTERNAL_FHIR_REQUEST_URL="<url for raven-fhir-server>/raven-fhir-server/fhir"
 ```
 Now, you are ready to build and run the container.
 ```
 sudo docker build -t raven-fhir-server .
-sudo docker run -d --restart unless-stopped --publish 8080:8080 raven-fhir-server
+sudo docker run -d --restart unless-stopped --publish 8080:8080 --link fhir_db:fhir_db raven-fhir-server
 ```
 If you did not change the docker file, then your URL will be 
 * HAPI Tester UI: http(s)://host-url:8080/raven-fhir-server/
