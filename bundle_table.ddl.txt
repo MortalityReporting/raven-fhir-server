@@ -1,0 +1,22 @@
+create table bundle
+(
+    id            text            not null
+        primary key,
+    txid          bigint          not null,
+    ts            timestamp with time zone default CURRENT_TIMESTAMP,
+    resource_type text                     default 'Bundle'::text,
+    status        resource_status not null,
+    resource      jsonb           not null
+);
+
+create table bundle_history
+(
+    id            text            not null,
+    txid          bigint          not null,
+    ts            timestamp with time zone default CURRENT_TIMESTAMP,
+    resource_type text                     default 'Bundle'::text,
+    status        resource_status not null,
+    resource      jsonb           not null,
+    primary key (id, txid)
+);
+

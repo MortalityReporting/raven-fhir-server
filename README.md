@@ -33,6 +33,12 @@ Now you created a database in the fhirbase postgresql database. Now, at the prom
 ```
 postgres@xxxxxxxxx:/$ fhirbase -d <database name> --fhir=4.0.0 init
 ```
+The fhirbase is missing bundle resource. Run the SQLs in the "bundle_table.ddl.txt". This will create two tables to hold Bundle resources.
+```
+psql -d <database name> -U <username> -h localhost -a -f ./bundle_table.ddl.txt
+```
+Or, you can use any DB tool to run the SQLs in the file. 
+
 Your database is ready for the FHIR server. Other postgresql tools can be used to manage the database.
 
 ## Raven FHIR Server Installation
