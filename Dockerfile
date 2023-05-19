@@ -10,6 +10,6 @@ FROM tomcat:9.0.65-jre17
 #ENV JDBC_URL=jdbc:postgresql://<host>:<port>/<database> JDBC_USERNAME=<username> JDBC_PASSWORD=<password>
 
 # Copy GT-FHIR war file to webapps.
-COPY --from=builder /usr/src/app/fhir-fhirbase-server/target/fhir-fhirbase-server.war $CATALINA_HOME/webapps/raven-fhir-server.war
+COPY --from=builder /usr/src/app/fhir-fhirbase-server/target/fhir-fhirbase-server.war $CATALINA_HOME/webapps/mdi-fhir-server.war
 
 EXPOSE 8080
