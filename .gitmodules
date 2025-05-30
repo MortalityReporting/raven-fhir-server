@@ -6,7 +6,3 @@
 	path = fhir-fhirbase-server
 	url = https://github.com/MortalityReporting/fhir-fhirbase-server.git
 	branch = master
-[submodule "MDI_javalib"]
-	path = MDI_javalib
-	url = https://github.com/MortalityReporting/MDI_javalib.git
-	branch = RavenFhirServer
