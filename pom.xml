@@ -36,6 +36,8 @@
 	<modules>
 		<module>fhir-fhirbase</module>
 		<module>fhir-fhirbase-server</module>
+		<module>vital-records-java</module>
+		<module>MDI_javalib</module>
 	</modules>
 
 	<licenses>
