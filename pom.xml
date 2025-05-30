@@ -36,7 +36,6 @@
 	<modules>
 		<module>fhir-fhirbase</module>
 		<module>fhir-fhirbase-server</module>
-		<module>MDI_javalib</module>
 	</modules>
 
 	<licenses>
