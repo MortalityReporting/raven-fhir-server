@@ -1,0 +1,456 @@
+{
+  "resourceType": "Bundle",
+  "id": "eabfa919-99d5-4028-b1f8-19bcfd5d71d8",
+  "meta": {
+    "profile": [
+      "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate-document"
+    ]
+  },
+  "type": "document",
+  "entry": [
+    {
+      "resource": {
+        "resourceType": "Composition",
+        "id": "4689062c-de9a-48ee-a3cc-ddaff39995bc",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certificate"
+          ]
+        },
+        "status": "final",
+        "type": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "64297-5"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "69efc1d5-ca14-42a8-9536-83fa1a35988c"
+        },
+        "date": "2019-08-28T14:10:03-04:00",
+        "attester": [
+          {
+            "mode": [
+              "legal"
+            ],
+            "time": "2019-08-28T14:10:03-04:00",
+            "party": {
+              "reference": "ffbb25ab-8a3e-49d2-8d98-69a33b85dac4"
+            }
+          }
+        ],
+        "event": [
+          {
+            "code": [
+              {
+                "coding": [
+                  {
+                    "system": "http://snomed.info/sct",
+                    "code": "103693007"
+                  }
+                ]
+              }
+            ],
+            "detail": [
+              {
+                "reference": "Procedure/b8c9b373-2b03-4a08-a72a-95c8eabb68de"
+              }
+            ]
+          }
+        ],
+        "section": [
+          {
+            "entry": [
+              {
+                "reference": "69efc1d5-ca14-42a8-9536-83fa1a35988c"
+              }
+            ]
+          },
+          {
+            "entry": [
+              {
+                "reference": "Location/00d2be90-2847-4d96-84e5-1bbafe05b199"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "69efc1d5-ca14-42a8-9536-83fa1a35988c",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "69efc1d5-ca14-42a8-9536-83fa1a35988c",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-decedent"
+          ]
+        },
+        "extension": [
+          {
+            "url": "http://www.hl7.org/fhir/us/core/StructureDefinition/us-core-race",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2106-3"
+                }
+              },
+              {
+                "url": "detailed",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238",
+                  "code": "2106-3"
+                }
+              },
+              {
+                "url": "text",
+                "valueString": "White"
+              }
+            ]
+          },
+          {
+            "url": "http://www.hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity",
+            "extension": [
+              {
+                "url": "ombCategory",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238"
+                }
+              },
+              {
+                "url": "detailed",
+                "valueCoding": {
+                  "system": "urn:oid:2.16.840.1.113883.6.238"
+                }
+              },
+              {
+                "url": "text"
+              }
+            ]
+          },
+          {
+            "url": "http://www.hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex",
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://www.hl7.org/fhir/us/core/ValueSet/us-core-birthsex",
+                  "code": "M"
+                }
+              ]
+            }
+          },
+          {
+            "url": "http://www.hl7.org/fhir/StructureDefinition/birthPlace",
+            "valueAddress": {
+              "use": "home",
+              "line": [
+                "1808 Stroop Hill Road"
+              ],
+              "city": "Atlanta",
+              "state": "GA",
+              "postalCode": "30303",
+              "country": "USA"
+            }
+          }
+        ],
+        "identifier": [
+          {
+            "type": {
+              "coding": [
+                {
+                  "code": "BR",
+                  "display": "Social Beneficiary Identifier"
+                }
+              ]
+            },
+            "system": "urn:oid:2.16.840.1.113883.4.1",
+            "value": "1AN2BN3DE45"
+          }
+        ],
+        "name": [
+          {
+            "use": "official",
+            "family": "Cleaveland",
+            "given": [
+              "Grover"
+            ]
+          }
+        ],
+        "maritalStatus": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/v3/MaritalStatus",
+              "code": "S"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "ffbb25ab-8a3e-49d2-8d98-69a33b85dac4",
+      "resource": {
+        "resourceType": "Practitioner",
+        "id": "ffbb25ab-8a3e-49d2-8d98-69a33b85dac4",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-certifier"
+          ]
+        },
+        "name": [
+          {
+            "use": "official",
+            "family": "Baden",
+            "given": [
+              "Michael"
+            ]
+          }
+        ],
+        "address": [
+          {
+            "use": "work",
+            "line": [
+              "256 Mount Olive Road"
+            ],
+            "city": "Atlata",
+            "state": "GA",
+            "postalCode": "30303",
+            "country": "USA"
+          }
+        ],
+        "qualification": [
+          {
+            "identifier": [
+              {
+                "value": "12345"
+              }
+            ],
+            "code": {
+              "coding": [
+                {
+                  "system": "http://www.hl7.org/fhir/v2/0360/2.7",
+                  "code": "MD"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "00d2be90-2847-4d96-84e5-1bbafe05b199",
+      "resource": {
+        "resourceType": "Location",
+        "id": "00d2be90-2847-4d96-84e5-1bbafe05b199",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-injury-location"
+          ]
+        },
+        "name": "Hospital",
+        "description": "Gracie Hospital",
+        "type": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/ValueSet/v3-ServiceDeliveryLocationRoleType",
+              "code": "HOSP"
+            }
+          ]
+        },
+        "address": {
+          "use": "home",
+          "line": [
+            "1808 Stroop Hill Road"
+          ],
+          "city": "Atlanta",
+          "state": "GA",
+          "postalCode": "30303",
+          "country": "USA"
+        }
+      }
+    },
+    {
+      "fullUrl": "b8c9b373-2b03-4a08-a72a-95c8eabb68de",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "b8c9b373-2b03-4a08-a72a-95c8eabb68de",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-certification"
+          ]
+        },
+        "status": "completed",
+        "category": {
+          "coding": [
+            {
+              "code": "103693007"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "code": "308646001"
+            }
+          ]
+        },
+        "performedDateTime": "2019-08-28T14:10:03-04:00"
+      }
+    },
+    {
+      "fullUrl": "ea2fa914-9f7f-4986-a428-a3075ca75bec",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "ea2fa914-9f7f-4986-a428-a3075ca75bec",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-autopsy-performed-indicator"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "85699-7",
+              "display": "Autopsy was performed"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "69efc1d5-ca14-42a8-9536-83fa1a35988c"
+        },
+        "component": [
+          {
+            "code": {
+              "coding": [
+                {
+                  "system": "http://loinc.org",
+                  "code": "69436-4",
+                  "display": "Autopsy results available"
+                }
+              ]
+            },
+            "valueCodeableConcept": {
+              "coding": [
+                {
+                  "system": "http://terminology.www.hl7.org/CodeSystem/v2-0136",
+                  "code": "Y",
+                  "display": "Yes"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "fullUrl": "fc66500a-4e75-4c6d-bc7f-035c7f54cce5",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "fc66500a-4e75-4c6d-bc7f-035c7f54cce5",
+        "meta": {
+          "profile": [
+            "http://hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-cause-of-death-part1"
+          ]
+        },
+        "subject": {
+          "reference": "69efc1d5-ca14-42a8-9536-83fa1a35988c"
+        },
+        "asserter": {
+          "reference": "Practitioner/ffbb25ab-8a3e-49d2-8d98-69a33b85dac4"
+        }
+      }
+    },
+    {
+      "fullUrl": "68b79725-a91a-469d-b70e-c1d438c38a8e",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "68b79725-a91a-469d-b70e-c1d438c38a8e",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-death-date"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "81956-5",
+              "display": "Autopsy was performed"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "69efc1d5-ca14-42a8-9536-83fa1a35988c"
+        },
+        "valueDateTime": "2019-08-28T14:10:03-04:00"
+      }
+    },
+    {
+      "fullUrl": "e9f6152d-21e6-468a-8707-fda33d84cf60",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "e9f6152d-21e6-468a-8707-fda33d84cf60",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-injury-incident"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "urn:oid:2.16.840.1.113883.3.290.2.1.19",
+              "code": "11374-6",
+              "display": "Injury incident description"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "fullUrl": "3a2831e9-cb14-4db8-a85d-b34924b407a8",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "3a2831e9-cb14-4db8-a85d-b34924b407a8",
+        "meta": {
+          "profile": [
+            "http://www.hl7.org/fhir/us/vrdr/StructureDefinition/vrdr-manner-of-death"
+          ]
+        },
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "69449-7",
+              "display": "Manner of death"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/69efc1d5-ca14-42a8-9536-83fa1a35988c"
+        },
+        "performer": [
+          {
+            "reference": "Practitioner/ffbb25ab-8a3e-49d2-8d98-69a33b85dac4"
+          }
+        ],
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.hl7.org/fhir/stu3/valueset-MannerTypeVS",
+              "code": "7878000",
+              "display": "Accident"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}	
