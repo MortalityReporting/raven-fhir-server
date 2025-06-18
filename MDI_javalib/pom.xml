@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>edu.gatech.chai</groupId>
   <artifactId>MDI</artifactId>
-  <version>1.2.14-STU-2.0.0-US</version>
+  <version>1.2.14-STU-2.0.0-US-Raven-1</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>

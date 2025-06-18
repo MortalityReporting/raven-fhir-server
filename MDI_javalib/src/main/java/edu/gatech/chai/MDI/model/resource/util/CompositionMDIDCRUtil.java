@@ -48,9 +48,9 @@ public class CompositionMDIDCRUtil {
 	public static final CodeableConcept decdentDispositionSectionCode = new CodeableConcept().addCoding(
 			new Coding(CommonUtil.vrdrDocumentSectionCS,"DecedentDisposition", ""));
 	public static final CodeableConcept deathCertificateDataReviewSectionCode = new CodeableConcept().addCoding(
-			new Coding(CommonUtil.vrdrDocumentSectionCS,"death-certificate-data-review", ""));
+			new Coding(CommonUtil.mdiCodesSystemURL,"death-certificate-data-review", ""));
 	public static final CodeableConcept cremationClearanceInfoSectionCode = new CodeableConcept().addCoding(
-			new Coding(CommonUtil.vrdrDocumentSectionCS,"cremation-clearance-info", ""));
+			new Coding(CommonUtil.mdiCodesSystemURL,"cremation-clearance-info", ""));
 	public static final String trackingNumberExtensionURL = "http://hl7.org/fhir/us/mdi/StructureDefinition/Extension-tracking-number";
 	public static final CodeableConcept trackingNumberMDIType = new CodeableConcept().addCoding(
 			new Coding(CommonUtil.mdiCodesSystemURL,"mdi-case-number","MDI Case Number"));
