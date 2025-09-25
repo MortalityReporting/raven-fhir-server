@@ -39,8 +39,9 @@ psql -d <database name> -U <username> -h localhost -a -f ./bundle_table.ddl.txt
 ```
 Or, you can use any DB tool to run the SQLs in the file. 
 
-The fhirbase however has some issues with a function that is deployed from the fhirbase installation. Once the postgres and fhirbase are installed, open the 
-fhirbase_delete(text,text,int8) function. And, replace the following line as shown below.
+The fhirbase however has an issue with a function that is deployed from the fhirbase installation. Once the postgres and fhirbase are installed, go to
+Functions/ in the postgres database schema. In the Functions, there should be *fhirbase_delete(text,text,int8)* function. And, replace the following line 
+in the fhirbase_delete(text,text,int8).
 
 From fhirbase_delete(text,text,int8) function, replace the following line
 ```
