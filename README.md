@@ -39,6 +39,20 @@ psql -d <database name> -U <username> -h localhost -a -f ./bundle_table.ddl.txt
 ```
 Or, you can use any DB tool to run the SQLs in the file. 
 
+The fhirbase however has some issues with a function that is deployed from the fhirbase installation. Once the postgres and fhirbase are installed, open the 
+fhirbase_delete(text,text,int8) function. And, replace the following line as shown below.
+
+From fhirbase_delete(text,text,int8) function, replace the following line
+```
+$SQL$,
+rt || '_history', rt, rt || '_history', rt, rt);
+```
+with this,
+```
+$SQL$,
+rt || '_history', '"' || rt || '"', rt || '_history', '"' || rt || '"', '"' || rt || '"');
+```
+
 Your database is ready for the FHIR server. Other postgresql tools can be used to manage the database.
 
 ## Raven FHIR Server Installation
