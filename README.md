@@ -43,7 +43,7 @@ The fhirbase however has an issue with a function that is deployed from the fhir
 Functions/ in the postgres database schema. In the Functions, there should be *fhirbase_delete(text,text,int8)* function. And, replace the following line 
 in the fhirbase_delete(text,text,int8).
 
-From fhirbase_delete(text,text,int8) function, replace the following line
+In fhirbase_delete(text,text,int8) function, replace the following line
 ```
 $SQL$,
 rt || '_history', rt, rt || '_history', rt, rt);
