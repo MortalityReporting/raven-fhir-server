@@ -81,9 +81,9 @@ sudo docker build -t raven-fhir-server .
 sudo docker run -d --restart unless-stopped --publish 8080:8080 --link fhir_db:fhir_db raven-fhir-server
 ```
 If you did not change the docker file, then your URL will be 
-* HAPI Tester UI: http(s)://host-url:8080/raven-fhir-server/
-* FHIR API URL: http(s)://host-url:8080/raven-fhir-server/fhir
-* SMART on FHIR App Registration: http(s)://host-url:8080/raven-fhir-server/smart/
+* HAPI Tester UI: http(s)://host-url:8080/mdi-fhir-server/
+* FHIR API URL: http(s)://host-url:8080/mdi-fhir-server/fhir
+* SMART on FHIR App Registration: http(s)://host-url:8080/mdi-fhir-server/smart/
   
 ## APIs supported
 1. To get all decedents (patients)<br/>
