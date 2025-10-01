@@ -61,7 +61,7 @@ Raven FHIR server can be downloaded from github repo and built as a FHIR server.
 ```
 git clone --recurse https://github.com/MortalityReporting/raven-fhir-server.git
 ```
-After cloning the project, you can go into the raven-fhir-server folder and add envrionment variables in the Dockerfile. See the following example. Only AUTH_BEARER or AUTH_BASIC is needed. 
+After cloning the project, you can go into the raven-fhir-server folder and add envrionment variables in the env.list file. See the following example. Only AUTH_BEARER or AUTH_BASIC is needed. 
 ```
 ENV JDBC_URL="jdbc:postgresql://fhir_db:5432/<database name>"
 ENV JDBC_USERNAME="postgres"
@@ -78,7 +78,7 @@ ENV INTERNAL_FHIR_REQUEST_URL="<url for raven-fhir-server>/raven-fhir-server/fhi
 Now, you are ready to build and run the container.
 ```
 sudo docker build -t raven-fhir-server .
-sudo docker run -d --restart unless-stopped --publish 8080:8080 --link fhir_db:fhir_db raven-fhir-server
+sudo docker run -d --restart unless-stopped --publish 8080:8080 --link fhir_db:fhir_db --env-file ./env.list raven-fhir-server
 ```
 If you did not change the docker file, then your URL will be 
 * HAPI Tester UI: http(s)://host-url:8080/mdi-fhir-server/
