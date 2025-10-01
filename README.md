@@ -10,7 +10,6 @@ The following direction uses docker installation of fhirbase. If you are running
 
 ```
 sudo docker network create <your_network>
-```
 sudo docker pull fhirbase/fhirbase:latest
 sudo docker run -d -p 3000:3000 -p 5432:5432 --name fhir_db --restart unless-stopped --network <your_network> fhirbase/fhirbase:latest
 ```
