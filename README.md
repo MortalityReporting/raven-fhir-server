@@ -76,6 +76,7 @@ Now, you are ready to build and run the container. The docker network should hav
 sudo docker build -t raven-fhir-server .
 sudo docker run -d --restart unless-stopped --publish 8080:8080 --network <your_network> --env-file ./env.list raven-fhir-server
 ```
+
 If you did not change the docker file, then your URL will be 
 * HAPI Tester UI: http(s)://host-url:8080/mdi-fhir-server/
 * FHIR API URL: http(s)://host-url:8080/mdi-fhir-server/fhir
