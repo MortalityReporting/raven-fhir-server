@@ -1,6 +1,7 @@
 #Build the Maven project
 # FROM maven:3.9.6-amazoncorretto-21-al2023 as builder
-FROM maven:3.9.8-sapmachine-21 AS builder
+# FROM maven:3.9.8-sapmachine-21 AS builder
+FROM maven:3.9.9-ibm-semeru-21-noble AS builder
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 RUN mvn clean install
