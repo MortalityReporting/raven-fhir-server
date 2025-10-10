@@ -8,7 +8,7 @@ RUN mvn clean install
 
 #Build the Tomcat container
 # FROM tomcat:jre25
-FROM tomcat:11.0.9-jre21-temurin
+FROM tomcat:11.0-jre21-temurin-jammy
 #set environment variables below and uncomment the line. Or, you can manually set your environment on your server.
 #ENV JDBC_URL=jdbc:postgresql://<host>:<port>/<database> JDBC_USERNAME=<username> JDBC_PASSWORD=<password>
 
