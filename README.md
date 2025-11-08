@@ -6,10 +6,12 @@ FHIR server component of Raven platform.
 * jdk and maven (for manual compilation).
 
 ## fhirbase Installation
-The following direction uses docker installation of fhirbase.
+The following direction uses docker installation of fhirbase. If you are running other containers to access this database, then we recommend to create a network.
+
 ```
+sudo docker network create <your_network>
 sudo docker pull fhirbase/fhirbase:latest
-sudo docker run -d -p 3000:3000 -p 5432:5432 --name fhir_db --restart unless-stopped fhirbase/fhirbase:latest
+sudo docker run -d -p 3000:3000 -p 5432:5432 --name fhir_db --restart unless-stopped --network <your_network> fhirbase/fhirbase:latest
 ```
 This will deploy the fhirbase postgresql database. Do the follow to get list of docker containers.
 ```
@@ -39,6 +41,21 @@ psql -d <database name> -U <username> -h localhost -a -f ./bundle_table.ddl.txt
 ```
 Or, you can use any DB tool to run the SQLs in the file. 
 
+The fhirbase however has an issue with a function that is deployed from the fhirbase installation. Once the postgres and fhirbase are installed, go to
+Functions/ in the postgres database schema. In the Functions, there should be *fhirbase_delete(text,text,int8)* function. And, replace the following line 
+in the fhirbase_delete(text,text,int8).
+
+In fhirbase_delete(text,text,int8) function, replace the following line
+```
+$SQL$,
+rt || '_history', rt, rt || '_history', rt, rt);
+```
+with this,
+```
+$SQL$,
+rt || '_history', '"' || rt || '"', rt || '_history', '"' || rt || '"', '"' || rt || '"');
+```
+
 Your database is ready for the FHIR server. Other postgresql tools can be used to manage the database.
 
 ## Raven FHIR Server Installation
@@ -46,29 +63,23 @@ Raven FHIR server can be downloaded from github repo and built as a FHIR server.
 ```
 git clone --recurse https://github.com/MortalityReporting/raven-fhir-server.git
 ```
-After cloning the project, you can go into the raven-fhir-server folder and add envrionment variables in the Dockerfile. See the following example. Only AUTH_BEARER or AUTH_BASIC is needed. 
+After cloning the project, you can go into the raven-fhir-server folder and modify envrionment variables in the env.list file. See the env.list file. Please note that either AUTH_BEARER or AUTH_BASIC is needed. 
+
+Set up docker network if you haven't done so. You need to use the same network for all the containers that you want to connect to each other.
 ```
-ENV JDBC_URL="jdbc:postgresql://fhir_db:5432/<database name>"
-ENV JDBC_USERNAME="postgres"
-ENV JDBC_PASSWORD="postgres"
-ENV SMART_INTROSPECTURL="<url for raven-fhir-server>/raven-fhir-server/smart/introspect"
-ENV SMART_AUTHSERVERURL="<url for raven-fhir-server>/raven-fhir-server/smart/authorize"
-ENV SMART_TOKENSERVERURL="<url for raven-fhir-server>/raven-fhir-server/smart/token"
-ENV AUTH_BEARER="<static bearer token>"
-ENV AUTH_BASIC="<basic auth - ex) client:secret>"
-ENV FHIR_READONLY="<True of False>"
-ENV SERVERBASE_URL="<raven server's fhir URL - ex) https://myurl.com/raven-fhir-server/fhir>"
-ENV INTERNAL_FHIR_REQUEST_URL="<url for raven-fhir-server>/raven-fhir-server/fhir"
+sudo docker network create <your_network>
 ```
-Now, you are ready to build and run the container.
+
+Now, you are ready to build and run the container. The docker network should have the database container unless external database is running.
 ```
 sudo docker build -t raven-fhir-server .
-sudo docker run -d --restart unless-stopped --publish 8080:8080 --link fhir_db:fhir_db raven-fhir-server
+sudo docker run -d --restart unless-stopped --publish 8080:8080 --network <your_network> --env-file ./env.list raven-fhir-server
 ```
+
 If you did not change the docker file, then your URL will be 
-* HAPI Tester UI: http(s)://host-url:8080/raven-fhir-server/
-* FHIR API URL: http(s)://host-url:8080/raven-fhir-server/fhir
-* SMART on FHIR App Registration: http(s)://host-url:8080/raven-fhir-server/smart/
+* HAPI Tester UI: http(s)://host-url:8080/mdi-fhir-server/
+* FHIR API URL: http(s)://host-url:8080/mdi-fhir-server/fhir
+* SMART on FHIR App Registration: http(s)://host-url:8080/mdi-fhir-server/smart/
   
 ## APIs supported
 1. To get all decedents (patients)<br/>
