@@ -7,7 +7,7 @@
 	<groupId>edu.gatech.chai</groupId>
 	<artifactId>raven-fhir-server</artifactId>
 	<packaging>pom</packaging>
-	<version>2.1.0</version>
+	<version>2.2.0</version>
 	<name>Raven FHIR Server</name>
 	<url>http://github.come/mortalityreport/forte-fhir-server</url>
 
