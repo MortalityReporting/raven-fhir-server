@@ -1,17 +1,19 @@
 version: '3.8'
 
 services:
-  fhir_db:
-    image: postgres:15-alpine
-    container_name: fhir_db
-    environment:
-      POSTGRES_DB: fhirbase
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+  fhir_fhirbase:
+    image: gtri/mdi-fhirbase:latest
+    container_name: fhir_fhirbase
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_DB: cmsr4
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mynewpassword
+    networks:
+      - raven-network
     volumes:
-      - fhir_db_data:/var/lib/postgresql/data
+      - fhir_fhirbase_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -19,16 +21,14 @@ services:
       retries: 5
 
   raven-fhir-server:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: gtri/mdi-fhir-server:latest
     container_name: raven-fhir-server
     ports:
       - "8080:8080"
     environment:
-      - JDBC_URL=jdbc:postgresql://fhir_db:5432/fhirbase
+      - JDBC_URL=jdbc:postgresql://fhir_fhirbase:5432/cmsr4
       - JDBC_USERNAME=postgres
-      - JDBC_PASSWORD=postgres
+      - JDBC_PASSWORD=mynewpassword
       - JDBC_POOLSIZE=5
       - SMART_INTROSPECTURL=
       - SMART_AUTHSERVERURL=
@@ -41,9 +41,15 @@ services:
       - SERVER_TYPE=raven
       - AUTH_AUDIENCE=https://bluejay.heat.icl.gtri.org/mdi-fhir-server/fhir
       - AUTH_ISSUER_URL=raven-mortality.us.auth0.com
+    networks:
+      - raven-network
     depends_on:
-      fhir_db:
+      fhir_fhirbase:
         condition: service_healthy
 
+networks:
+  raven-network:
+    driver: bridge
+
 volumes:
-  fhir_db_data:
+  fhir_fhirbase_data:
