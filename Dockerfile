@@ -18,9 +18,12 @@ RUN sed -i 's/port="8080"/port="${port.http}"/g' ${CATALINA_HOME}/conf/server.xm
 # Define a default runtime environment variable for convenience
 ENV TOMCAT_PORT=8080
 
-# Pass the environment variable value into Tomcat's JVM options at boot
-ENV CATALINA_OPTS='-Dcatalina.http.port=${TOMCAT_PORT} -Dport.http=${TOMCAT_PORT}'
+# Expose the default Tomcat port
+EXPOSE 8080
 
 # Copy GT-FHIR war file to webapps.
+ENV SERVER_PATH=mdi-fhir-server
+
 COPY --from=builder /usr/src/app/fhir-fhirbase-server/target/fhir-fhirbase-server.war $CATALINA_HOME/webapps/mdi-fhir-server.war
-CMD ["catalina.sh", "run"]
+COPY runtime-setup.sh /usr/local/bin/
+CMD ["runtime-setup.sh", "catalina.sh", "run"]
